@@ -3,20 +3,27 @@ const fetchFunction = (n) => {
       return res.json()
     }).then(
     data => {
-        console.log(data);
+        // console.log(data);
         const html = data.map(
           single => {
             if (single.name.toLowerCase().indexOf(n.toLowerCase()) ==0  ) {
               return `
               <div>
-                <div class="first">
-                  <img src = "${single.icon}">
+                <div class='child1'>
+                  <div class="first">
+                    <img src = "${single.icon}">
+                  </div>
+                  <div class="second">
+                    <p>${single.name}</p>
+                  </div>
                 </div>
-                <div class="second">
-                  <p>${single.name}</p>
-                </div>
-                <div class='third'>
-                  <p>${single.description}</p>
+                <div class ='child2'>
+                  <div class='third'>
+                    <h3>${single.title.toUpperCase()}</h3>
+                    <h4>${single.tags}</h4>
+                    <hr>
+                    <p>${single.description}</p>
+                  </div>
                 </div>
               </div>
               `
@@ -31,7 +38,7 @@ const fetchFunction = (n) => {
 const sortList = () => {
   document.getElementById('body').innerHTML = '';
   var x = document.getElementById('search').value;
-  console.log(x);
+  // console.log(x);
   fetchFunction(x);
   document.getElementById('search').value = '';
 }
